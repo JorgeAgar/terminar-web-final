@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class CajeroFacturaDTO {
-	String token;
+public class MedioPagoFacturaDTO {
+	
+	private String tipo_pago;
+	private String tipo_tarjeta;
+	private int cuotas;
+	private double valor;
 }

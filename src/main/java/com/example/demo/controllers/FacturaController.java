@@ -27,7 +27,7 @@ public class FacturaController {
 	}
 	
 	@GetMapping("/consultar/{idTienda}")
-	public FacturaResponseDTO consultarFactura(@PathVariable String tiendaUUID, @RequestBody ConsultaFacturaDTO datosConsulta) {
-		return facturaService.consultarFactura(datosConsulta.getToken(), tiendaUUID, datosConsulta.getCliente(), datosConsulta.getFactura());
+	public FacturaResponseDTO consultarFactura(@PathVariable String idTienda, @RequestBody ConsultaFacturaDTO datosConsulta) {
+		return facturaService.consultarFactura(datosConsulta.getToken(), idTienda, datosConsulta.getCliente(), datosConsulta.getFactura());
 	}
 }

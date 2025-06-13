@@ -21,6 +21,15 @@ public class TipoDocumentoService {
     public List<TipoDocumento> getAllTipoDocumentos() {
         return tipoDocumentoRepository.findAll();
     }
+    
+    public TipoDocumento getTipoDocumentoByName(String name) {
+    	List<TipoDocumento> all = getAllTipoDocumentos();
+    	for(TipoDocumento td : all) {
+    		if(td.getNombre().equalsIgnoreCase(name))
+    			return td;
+    	}
+    	return null;
+    }
 
     public TipoDocumento getTipoDocumentoById(int id) {
         return tipoDocumentoRepository.getReferenceById(id);

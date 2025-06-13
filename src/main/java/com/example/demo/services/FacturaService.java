@@ -15,6 +15,7 @@ import com.example.demo.dto.ClienteDTO;
 import com.example.demo.dto.DetallesCompraFacturaDTO;
 import com.example.demo.dto.FacturaDTO;
 import com.example.demo.dto.FacturaResponseDTO;
+import com.example.demo.dto.MedioPagoFacturaDTO;
 import com.example.demo.dto.PagoDTO;
 import com.example.demo.dto.ProductoFacturaDTO;
 import com.example.demo.entities.Cajero;
@@ -54,8 +55,6 @@ public class FacturaService {
 	
 	@Autowired
 	private CompraService compraService;
-	
-	@Autowired
 
 	public ResponseEntity<String> generarFactura(String tiendaId, FacturaDTO factura) {
 		Compra compra = new Compra();
@@ -113,18 +112,18 @@ public class FacturaService {
 					+ "}";
 			return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
 		}
-		for(PagoDTO pagoDto : factura.getMedios_pago()) {
+		for(MedioPagoFacturaDTO pagoDto : factura.getMedios_pago()) {
 			Pago pago = new Pago();
 			pago.setCompra(compra);
 			pago.setCuotas(pagoDto.getCuotas());
 			pago.setValor(pagoDto.getValor());
 			TarjetaTipo tipo = null;
-			if(pagoDto.getTarjetaTipo().equalsIgnoreCase("Mastercard"))
+			if(pagoDto.getTipo_tarjeta().equalsIgnoreCase("Mastercard"))
 				tipo = TarjetaTipo.MASTERCARD;
-			else if(pagoDto.getTarjetaTipo().equalsIgnoreCase("Visa"))
+			else if(pagoDto.getTipo_tarjeta().equalsIgnoreCase("Visa"))
 				tipo = TarjetaTipo.VISA;
 			pago.setTarjetaTipo(tipo);
-			TipoPago tipoPago = tipoPagoService.getTipoPagoByName(pagoDto.getTipoPago().getNombre());
+			TipoPago tipoPago = tipoPagoService.getTipoPagoByName(pagoDto.getTipo_pago());
 			if(tipoPago == null) { //el tipo de pago no existe
 				String body = "{"
 						+ "	'status': 'error',"
