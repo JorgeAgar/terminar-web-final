@@ -41,6 +41,10 @@ public class CompraService {
     public Compra getCompraById(int id) {
         return compraRepository.getReferenceById(id);
     }
+    
+    public void addCompra(Compra c) {
+    	compraRepository.save(c);
+    }
 
     public void addCompra(CompraDTO dto) {
         Compra compra = new Compra();

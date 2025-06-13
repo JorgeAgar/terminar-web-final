@@ -21,6 +21,15 @@ public class TiendaService {
     public List<Tienda> getAllTiendas() {
         return tiendaRepository.findAll();
     }
+    
+    public Tienda getTiendaByUUID(String uuid) {
+    	List<Tienda> all = getAllTiendas();
+    	for(Tienda t : all) {
+    		if(t.getUuid().equals(uuid))
+    			return t;
+    	}
+    	return null;
+    }
 
     public Tienda getTiendaById(int id) {
         return tiendaRepository.getReferenceById(id);

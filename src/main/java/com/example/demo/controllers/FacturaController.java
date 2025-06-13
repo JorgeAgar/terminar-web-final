@@ -1,12 +1,15 @@
 package com.example.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.ConsultaFacturaDTO;
 import com.example.demo.dto.FacturaDTO;
+import com.example.demo.dto.FacturaResponseDTO;
 import com.example.demo.services.FacturaService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -19,7 +22,12 @@ public class FacturaController {
 	FacturaService facturaService;
 
 	@GetMapping("/crear/{idTienda}")
-	public FacturaDTO procesarFactura(@PathVariable String idTienda, @RequestBody FacturaDTO factura) {
+	public ResponseEntity<String> procesarFactura(@PathVariable String idTienda, @RequestBody FacturaDTO factura) {
 		return facturaService.generarFactura(idTienda, factura);
+	}
+	
+	@GetMapping("/consultar/{idTienda}")
+	public FacturaResponseDTO consultarFactura(@PathVariable String tiendaUUID, @RequestBody ConsultaFacturaDTO datosConsulta) {
+		return facturaService.consultarFactura(datosConsulta.getToken(), tiendaUUID, datosConsulta.getCliente(), datosConsulta.getFactura());
 	}
 }

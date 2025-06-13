@@ -39,12 +39,12 @@ public class ClienteService {
         return clienteRepository.getReferenceById(id);
     }
 
-    public void addCliente(ClienteDTO dto) {
+    public Cliente addCliente(ClienteDTO dto) {
         Cliente cliente = new Cliente();
         cliente.setNombre(dto.getNombre());
         cliente.setDocumento(dto.getDocumento());
         TipoDocumento tipo = tipoDocumentoService.getTipoDocumentoById(dto.getTipoDocumentoId());
         cliente.setTipoDocumento(tipo);
-        clienteRepository.save(cliente);
+        return clienteRepository.save(cliente);
     }
 }

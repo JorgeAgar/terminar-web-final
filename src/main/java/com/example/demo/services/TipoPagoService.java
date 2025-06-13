@@ -21,6 +21,15 @@ public class TipoPagoService {
     public List<TipoPago> getAllTipoPagos() {
         return tipoPagoRepository.findAll();
     }
+    
+    public TipoPago getTipoPagoByName(String name) {
+    	List<TipoPago> all = getAllTipoPagos();
+    	for(TipoPago tp : all) {
+    		if(tp.getNombre().equalsIgnoreCase(name))
+    			return tp;
+    	}
+    	return null;
+    }
 
     public TipoPago getTipoPagoById(int id) {
         return tipoPagoRepository.getReferenceById(id);

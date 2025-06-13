@@ -33,6 +33,10 @@ public class DetallesCompraService {
     public DetallesCompra getDetallesCompraById(int id) {
         return detallesCompraRepository.getReferenceById(id);
     }
+    
+    public void addDetallesCompra(DetallesCompra d) {
+    	detallesCompraRepository.save(d);
+    }
 
     public void addDetallesCompra(DetallesCompraDTO dto) {
         DetallesCompra detalle = new DetallesCompra();
