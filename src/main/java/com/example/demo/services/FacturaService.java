@@ -16,7 +16,6 @@ import com.example.demo.dto.DetallesCompraFacturaDTO;
 import com.example.demo.dto.FacturaDTO;
 import com.example.demo.dto.FacturaResponseDTO;
 import com.example.demo.dto.MedioPagoFacturaDTO;
-import com.example.demo.dto.PagoDTO;
 import com.example.demo.dto.ProductoFacturaDTO;
 import com.example.demo.entities.Cajero;
 import com.example.demo.entities.Cliente;
@@ -57,6 +56,7 @@ public class FacturaService {
 	private CompraService compraService;
 
 	public ResponseEntity<String> generarFactura(String tiendaId, FacturaDTO factura) {
+		System.out.println(factura);
 		Compra compra = new Compra();
 		
 		Tienda tienda = tiendaService.getTiendaByUUID(tiendaId);

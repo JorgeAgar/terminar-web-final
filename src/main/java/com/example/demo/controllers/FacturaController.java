@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,8 +22,9 @@ public class FacturaController {
 	@Autowired
 	FacturaService facturaService;
 
-	@GetMapping("/crear/{idTienda}")
+	@PostMapping("/crear/{idTienda}")
 	public ResponseEntity<String> procesarFactura(@PathVariable String idTienda, @RequestBody FacturaDTO factura) {
+		System.out.println("En controller " + factura);
 		return facturaService.generarFactura(idTienda, factura);
 	}
 	
