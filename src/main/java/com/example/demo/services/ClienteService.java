@@ -43,7 +43,7 @@ public class ClienteService {
         Cliente cliente = new Cliente();
         cliente.setNombre(dto.getNombre());
         cliente.setDocumento(dto.getDocumento());
-        TipoDocumento tipo = tipoDocumentoService.getTipoDocumentoByName(dto.getTipoDocumento());
+        TipoDocumento tipo = tipoDocumentoService.getTipoDocumentoByName(dto.getTipo_documento());
         cliente.setTipoDocumento(tipo);
         return clienteRepository.save(cliente);
     }

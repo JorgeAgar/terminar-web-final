@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 public class ClienteDTO {
     private String nombre;
     private String documento;
-    private String tipoDocumento;
+    private String tipo_documento;
 
     public ClienteDTO(Cliente entity) {
         this.nombre = entity.getNombre();
         this.documento = entity.getDocumento();
-        this.tipoDocumento = entity.getTipoDocumento() != null ? entity.getTipoDocumento().getNombre() : null;
+        this.tipo_documento = entity.getTipoDocumento() != null ? entity.getTipoDocumento().getNombre() : null;
     }
 }
 

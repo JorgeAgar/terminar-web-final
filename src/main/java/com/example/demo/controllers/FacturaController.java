@@ -13,7 +13,8 @@ import com.example.demo.dto.FacturaDTO;
 import com.example.demo.dto.FacturaResponseDTO;
 import com.example.demo.services.FacturaService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+//import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/")
@@ -29,7 +30,7 @@ public class FacturaController {
 	}
 	
 	@GetMapping("/consultar/{idTienda}")
-	public FacturaResponseDTO consultarFactura(@PathVariable String idTienda, @RequestBody ConsultaFacturaDTO datosConsulta) {
+	public FacturaResponseDTO consultarFactura(@PathVariable String idTienda, @io.swagger.v3.oas.annotations.parameters.RequestBody ConsultaFacturaDTO datosConsulta) {
 		return facturaService.consultarFactura(datosConsulta.getToken(), idTienda, datosConsulta.getCliente(), datosConsulta.getFactura());
 	}
 }
